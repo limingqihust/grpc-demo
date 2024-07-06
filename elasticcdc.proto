@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package elasticcdc;
+
+// The greeting service definition.
+service ElasticcdcService {
+  // Sends a greeting
+  rpc SayHello (ElasticcdcRequest) returns (ElasticcdcReply) {}
+// Sends another greeting
+  rpc SayHelloAgain (ElasticcdcRequest) returns (ElasticcdcReply) {}
+
+  rpc ImageClassify (ElasticcdcRequest) returns (ElasticcdcReply) {}
+}
+
+// The request message containing the user's name.
+message ElasticcdcRequest {
+    string name = 1;
+    string image_classify_request_info = 2;
+}
+
+// The response message containing the greetings
+message ElasticcdcReply {
+    string message = 1;
+    string image_classify_reply_info = 2;
+}
