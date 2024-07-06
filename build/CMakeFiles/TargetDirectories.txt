@@ -1,4 +1,0 @@
-/home/lmq/temp/build/CMakeFiles/greeter_client.dir
-/home/lmq/temp/build/CMakeFiles/greeter_server.dir
-/home/lmq/temp/build/CMakeFiles/edit_cache.dir
-/home/lmq/temp/build/CMakeFiles/rebuild_cache.dir
