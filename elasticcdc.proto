@@ -21,6 +21,7 @@ message ElasticcdcRequest {
     string model_name = 3;
     string scale = 4;
     string filename = 5;
+    int64  id = 6;
 }
 
 // The response message containing the greetings

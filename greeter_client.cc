@@ -19,7 +19,9 @@
 #include <iostream>
 #include <memory>
 #include <string>
-
+#include <vector>
+#include <thread>
+#include <stdlib.h>
 #include <grpcpp/grpcpp.h>
 
 #ifdef BAZEL_BUILD
@@ -84,12 +86,13 @@ class ElasticcdcClient {
     }
   }
 
-  std::string ImageClassify(const std::string& file_name) {
+  std::string ImageClassify(const std::string& file_name, int id) {
     ElasticcdcRequest request;
     request.set_image_classify_request_info(file_name);
-    request.set_model_name("densenet_onnx");
+    request.set_model_name("inception_graphdef");
     request.set_scale("INCEPTION");
-    request.set_filename("/home/lmq/server/qa/images/mug.jpg");
+    request.set_filename(file_name);
+    request.set_id(id);
     ElasticcdcReply reply;
     ClientContext context;
 
@@ -119,6 +122,53 @@ class ElasticcdcClient {
  private:
   std::unique_ptr<ElasticcdcService::Stub> stub_;
 };
+
+
+const std::vector<std::string> res = {"15.349563:504:COFFEE MUG",
+                                "13.135877:817:SPORTS CAR", 
+                                "16.531471:23:VULTURE"};
+
+const std::vector<std::string> filenames = {"/home/lmq/server/qa/images/mug.jpg",
+                                            "/home/lmq/server/qa/images/car.jpg",
+                                            "/home/lmq/server/qa/images/vulture.jpeg"};
+// int main(int argc, char** argv) {
+//   // Instantiate the client. It requires a channel, out of which the actual RPCs
+//   // are created. This channel models a connection to an endpoint specified by
+//   // the argument "--target=" which is the only expected argument.
+//   // We indicate that the channel isn't authenticated (use of
+//   // InsecureChannelCredentials()).
+//   const std::string target_str = "localhost:50051";
+//   ElasticcdcClient client(grpc::CreateChannel(
+//                           target_str, grpc::InsecureChannelCredentials()));
+//   std::thread thds[10];
+//   for (int i = 0; i < 10; i++) {
+//     thds[i] = std::thread([&client, i](){
+//       for (int j = 0; j < 10; j++) {
+//         if (client.IsPreempted()) {
+//           std::cout << "rpc server is preempted" << std::endl;
+//         } else {
+//           std::cout << "rpc server is not preempted" << std::endl;
+//         }
+//         int index = rand() % filenames.size();
+//         int id = i * 10 + j;
+//         std::cout << "send request: " << id << std::endl;
+//         std::string reply = client.ImageClassify(filenames[index], id);
+//         if (reply != res[index]) {
+//           std::cout << "request: " << filenames[index] << ", recieve reply: " << reply << std::endl;
+//           exit(-1);
+//         } else {
+//           std::cout << "request: " << id << " is correct" << std::endl;
+//         }
+//       }
+//     });
+//   }
+
+//   for (int i = 0; i < 10; i++) {
+//     thds[i].join();
+//   }
+// }
+
+
 int main(int argc, char** argv) {
   // Instantiate the client. It requires a channel, out of which the actual RPCs
   // are created. This channel models a connection to an endpoint specified by
@@ -128,16 +178,14 @@ int main(int argc, char** argv) {
   const std::string target_str = "localhost:50051";
   ElasticcdcClient client(grpc::CreateChannel(
                           target_str, grpc::InsecureChannelCredentials()));
-
   if (client.IsPreempted()) {
     std::cout << "rpc server is preempted" << std::endl;
   } else {
     std::cout << "rpc server is not preempted" << std::endl;
   }
-    const std::string file_name("world");
-    std::string reply = client.ImageClassify(file_name);
-    std::cout << "rpc client recieve: " << reply << std::endl; 
-  return 0;
+
+  std::string reply = client.ImageClassify("/home/lmq/server/qa/images", 0);
+  std::cout << "reply: " << reply << std::endl;  
 }
 
 

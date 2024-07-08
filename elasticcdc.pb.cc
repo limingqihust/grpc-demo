@@ -40,6 +40,7 @@ inline constexpr ElasticcdcRequest::Impl_::Impl_(
         filename_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        id_{::int64_t{0}},
         _cached_size_{0} {}
 
 template <typename>
@@ -101,6 +102,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::elasticcdc::ElasticcdcRequest, _impl_.model_name_),
         PROTOBUF_FIELD_OFFSET(::elasticcdc::ElasticcdcRequest, _impl_.scale_),
         PROTOBUF_FIELD_OFFSET(::elasticcdc::ElasticcdcRequest, _impl_.filename_),
+        PROTOBUF_FIELD_OFFSET(::elasticcdc::ElasticcdcRequest, _impl_.id_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::elasticcdc::ElasticcdcReply, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -116,7 +118,7 @@ const ::uint32_t
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::elasticcdc::ElasticcdcRequest)},
-        {13, -1, -1, sizeof(::elasticcdc::ElasticcdcReply)},
+        {14, -1, -1, sizeof(::elasticcdc::ElasticcdcReply)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::elasticcdc::_ElasticcdcRequest_default_instance_._instance,
@@ -124,27 +126,27 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_elasticcdc_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\020elasticcdc.proto\022\nelasticcdc\"{\n\021Elasti"
-    "ccdcRequest\022\014\n\004name\030\001 \001(\t\022#\n\033image_class"
-    "ify_request_info\030\002 \001(\t\022\022\n\nmodel_name\030\003 \001"
-    "(\t\022\r\n\005scale\030\004 \001(\t\022\020\n\010filename\030\005 \001(\t\"E\n\017E"
-    "lasticcdcReply\022\017\n\007message\030\001 \001(\t\022!\n\031image"
-    "_classify_reply_info\030\002 \001(\t2\310\002\n\021Elasticcd"
-    "cService\022H\n\010SayHello\022\035.elasticcdc.Elasti"
-    "ccdcRequest\032\033.elasticcdc.ElasticcdcReply"
-    "\"\000\022M\n\rSayHelloAgain\022\035.elasticcdc.Elastic"
-    "cdcRequest\032\033.elasticcdc.ElasticcdcReply\""
-    "\000\022M\n\rImageClassify\022\035.elasticcdc.Elasticc"
-    "dcRequest\032\033.elasticcdc.ElasticcdcReply\"\000"
-    "\022K\n\013IsPreempted\022\035.elasticcdc.ElasticcdcR"
-    "equest\032\033.elasticcdc.ElasticcdcReply\"\000b\006p"
-    "roto3"
+    "\n\020elasticcdc.proto\022\nelasticcdc\"\207\001\n\021Elast"
+    "iccdcRequest\022\014\n\004name\030\001 \001(\t\022#\n\033image_clas"
+    "sify_request_info\030\002 \001(\t\022\022\n\nmodel_name\030\003 "
+    "\001(\t\022\r\n\005scale\030\004 \001(\t\022\020\n\010filename\030\005 \001(\t\022\n\n\002"
+    "id\030\006 \001(\003\"E\n\017ElasticcdcReply\022\017\n\007message\030\001"
+    " \001(\t\022!\n\031image_classify_reply_info\030\002 \001(\t2"
+    "\310\002\n\021ElasticcdcService\022H\n\010SayHello\022\035.elas"
+    "ticcdc.ElasticcdcRequest\032\033.elasticcdc.El"
+    "asticcdcReply\"\000\022M\n\rSayHelloAgain\022\035.elast"
+    "iccdc.ElasticcdcRequest\032\033.elasticcdc.Ela"
+    "sticcdcReply\"\000\022M\n\rImageClassify\022\035.elasti"
+    "ccdc.ElasticcdcRequest\032\033.elasticcdc.Elas"
+    "ticcdcReply\"\000\022K\n\013IsPreempted\022\035.elasticcd"
+    "c.ElasticcdcRequest\032\033.elasticcdc.Elastic"
+    "cdcReply\"\000b\006proto3"
 };
 static ::absl::once_flag descriptor_table_elasticcdc_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_elasticcdc_2eproto = {
     false,
     false,
-    565,
+    578,
     descriptor_table_protodef_elasticcdc_2eproto,
     "elasticcdc.proto",
     &descriptor_table_elasticcdc_2eproto_once,
@@ -204,6 +206,7 @@ ElasticcdcRequest::ElasticcdcRequest(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.id_ = from._impl_.id_;
 
   // @@protoc_insertion_point(copy_constructor:elasticcdc.ElasticcdcRequest)
 }
@@ -219,6 +222,7 @@ inline PROTOBUF_NDEBUG_INLINE ElasticcdcRequest::Impl_::Impl_(
 
 inline void ElasticcdcRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.id_ = {};
 }
 ElasticcdcRequest::~ElasticcdcRequest() {
   // @@protoc_insertion_point(destructor:elasticcdc.ElasticcdcRequest)
@@ -261,6 +265,7 @@ PROTOBUF_NOINLINE void ElasticcdcRequest::Clear() {
   _impl_.model_name_.ClearToEmpty();
   _impl_.scale_.ClearToEmpty();
   _impl_.filename_.ClearToEmpty();
+  _impl_.id_ = ::int64_t{0};
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -272,15 +277,15 @@ const char* ElasticcdcRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 0, 91, 2> ElasticcdcRequest::_table_ = {
+const ::_pbi::TcParseTable<3, 6, 0, 91, 2> ElasticcdcRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    5, 56,  // max_field_number, fast_idx_mask
+    6, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294967232,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
+    6,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_ElasticcdcRequest_default_instance_._instance,
@@ -305,7 +310,9 @@ const ::_pbi::TcParseTable<3, 5, 0, 91, 2> ElasticcdcRequest::_table_ = {
     // string filename = 5;
     {::_pbi::TcParser::FastUS1,
      {42, 63, 0, PROTOBUF_FIELD_OFFSET(ElasticcdcRequest, _impl_.filename_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // int64 id = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(ElasticcdcRequest, _impl_.id_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(ElasticcdcRequest, _impl_.id_)}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
@@ -325,6 +332,9 @@ const ::_pbi::TcParseTable<3, 5, 0, 91, 2> ElasticcdcRequest::_table_ = {
     // string filename = 5;
     {PROTOBUF_FIELD_OFFSET(ElasticcdcRequest, _impl_.filename_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int64 id = 6;
+    {PROTOBUF_FIELD_OFFSET(ElasticcdcRequest, _impl_.id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
   }},
   // no aux_entries
   {{
@@ -385,6 +395,13 @@ const ::_pbi::TcParseTable<3, 5, 0, 91, 2> ElasticcdcRequest::_table_ = {
     target = stream->WriteStringMaybeAliased(5, _s, target);
   }
 
+  // int64 id = 6;
+  if (this->_internal_id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<6>(
+            stream, this->_internal_id(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -432,6 +449,12 @@ const ::_pbi::TcParseTable<3, 5, 0, 91, 2> ElasticcdcRequest::_table_ = {
                                     this->_internal_filename());
   }
 
+  // int64 id = 6;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+        this->_internal_id());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -459,6 +482,9 @@ void ElasticcdcRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const
   if (!from._internal_filename().empty()) {
     _this->_internal_set_filename(from._internal_filename());
   }
+  if (from._internal_id() != 0) {
+    _this->_impl_.id_ = from._impl_.id_;
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -483,6 +509,7 @@ void ElasticcdcRequest::InternalSwap(ElasticcdcRequest* PROTOBUF_RESTRICT other)
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.model_name_, &other->_impl_.model_name_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.scale_, &other->_impl_.scale_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.filename_, &other->_impl_.filename_, arena);
+        swap(_impl_.id_, other->_impl_.id_);
 }
 
 ::google::protobuf::Metadata ElasticcdcRequest::GetMetadata() const {

@@ -199,6 +199,7 @@ class ElasticcdcRequest final : public ::google::protobuf::Message
     kModelNameFieldNumber = 3,
     kScaleFieldNumber = 4,
     kFilenameFieldNumber = 5,
+    kIdFieldNumber = 6,
   };
   // string name = 1;
   void clear_name() ;
@@ -280,12 +281,22 @@ class ElasticcdcRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_filename();
 
   public:
+  // int64 id = 6;
+  void clear_id() ;
+  ::int64_t id() const;
+  void set_id(::int64_t value);
+
+  private:
+  ::int64_t _internal_id() const;
+  void _internal_set_id(::int64_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:elasticcdc.ElasticcdcRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 5, 0,
+      3, 6, 0,
       91, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -306,6 +317,7 @@ class ElasticcdcRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr model_name_;
     ::google::protobuf::internal::ArenaStringPtr scale_;
     ::google::protobuf::internal::ArenaStringPtr filename_;
+    ::int64_t id_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -768,6 +780,28 @@ inline void ElasticcdcRequest::set_allocated_filename(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:elasticcdc.ElasticcdcRequest.filename)
+}
+
+// int64 id = 6;
+inline void ElasticcdcRequest::clear_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.id_ = ::int64_t{0};
+}
+inline ::int64_t ElasticcdcRequest::id() const {
+  // @@protoc_insertion_point(field_get:elasticcdc.ElasticcdcRequest.id)
+  return _internal_id();
+}
+inline void ElasticcdcRequest::set_id(::int64_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:elasticcdc.ElasticcdcRequest.id)
+}
+inline ::int64_t ElasticcdcRequest::_internal_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.id_;
+}
+inline void ElasticcdcRequest::_internal_set_id(::int64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.id_ = value;
 }
 
 // -------------------------------------------------------------------
