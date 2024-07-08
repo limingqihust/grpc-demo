@@ -25,6 +25,7 @@ static const char* ElasticcdcService_method_names[] = {
   "/elasticcdc.ElasticcdcService/SayHello",
   "/elasticcdc.ElasticcdcService/SayHelloAgain",
   "/elasticcdc.ElasticcdcService/ImageClassify",
+  "/elasticcdc.ElasticcdcService/IsPreempted",
 };
 
 std::unique_ptr< ElasticcdcService::Stub> ElasticcdcService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -37,6 +38,7 @@ ElasticcdcService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& 
   : channel_(channel), rpcmethod_SayHello_(ElasticcdcService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SayHelloAgain_(ElasticcdcService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ImageClassify_(ElasticcdcService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_IsPreempted_(ElasticcdcService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status ElasticcdcService::Stub::SayHello(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::elasticcdc::ElasticcdcReply* response) {
@@ -108,6 +110,29 @@ void ElasticcdcService::Stub::async::ImageClassify(::grpc::ClientContext* contex
   return result;
 }
 
+::grpc::Status ElasticcdcService::Stub::IsPreempted(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::elasticcdc::ElasticcdcReply* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::elasticcdc::ElasticcdcRequest, ::elasticcdc::ElasticcdcReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_IsPreempted_, context, request, response);
+}
+
+void ElasticcdcService::Stub::async::IsPreempted(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::elasticcdc::ElasticcdcRequest, ::elasticcdc::ElasticcdcReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsPreempted_, context, request, response, std::move(f));
+}
+
+void ElasticcdcService::Stub::async::IsPreempted(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_IsPreempted_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::elasticcdc::ElasticcdcReply>* ElasticcdcService::Stub::PrepareAsyncIsPreemptedRaw(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::elasticcdc::ElasticcdcReply, ::elasticcdc::ElasticcdcRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_IsPreempted_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::elasticcdc::ElasticcdcReply>* ElasticcdcService::Stub::AsyncIsPreemptedRaw(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncIsPreemptedRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ElasticcdcService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       ElasticcdcService_method_names[0],
@@ -139,6 +164,16 @@ ElasticcdcService::Service::Service() {
              ::elasticcdc::ElasticcdcReply* resp) {
                return service->ImageClassify(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      ElasticcdcService_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< ElasticcdcService::Service, ::elasticcdc::ElasticcdcRequest, ::elasticcdc::ElasticcdcReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](ElasticcdcService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::elasticcdc::ElasticcdcRequest* req,
+             ::elasticcdc::ElasticcdcReply* resp) {
+               return service->IsPreempted(ctx, req, resp);
+             }, this)));
 }
 
 ElasticcdcService::Service::~Service() {
@@ -159,6 +194,13 @@ ElasticcdcService::Service::~Service() {
 }
 
 ::grpc::Status ElasticcdcService::Service::ImageClassify(::grpc::ServerContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status ElasticcdcService::Service::IsPreempted(::grpc::ServerContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response) {
   (void) context;
   (void) request;
   (void) response;

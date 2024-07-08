@@ -31,6 +31,15 @@ inline constexpr ElasticcdcRequest::Impl_::Impl_(
         image_classify_request_info_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        model_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        scale_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        filename_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         _cached_size_{0} {}
 
 template <typename>
@@ -89,6 +98,9 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::elasticcdc::ElasticcdcRequest, _impl_.name_),
         PROTOBUF_FIELD_OFFSET(::elasticcdc::ElasticcdcRequest, _impl_.image_classify_request_info_),
+        PROTOBUF_FIELD_OFFSET(::elasticcdc::ElasticcdcRequest, _impl_.model_name_),
+        PROTOBUF_FIELD_OFFSET(::elasticcdc::ElasticcdcRequest, _impl_.scale_),
+        PROTOBUF_FIELD_OFFSET(::elasticcdc::ElasticcdcRequest, _impl_.filename_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::elasticcdc::ElasticcdcReply, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -104,7 +116,7 @@ const ::uint32_t
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::elasticcdc::ElasticcdcRequest)},
-        {10, -1, -1, sizeof(::elasticcdc::ElasticcdcReply)},
+        {13, -1, -1, sizeof(::elasticcdc::ElasticcdcReply)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::elasticcdc::_ElasticcdcRequest_default_instance_._instance,
@@ -112,23 +124,27 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_elasticcdc_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\020elasticcdc.proto\022\nelasticcdc\"F\n\021Elasti"
+    "\n\020elasticcdc.proto\022\nelasticcdc\"{\n\021Elasti"
     "ccdcRequest\022\014\n\004name\030\001 \001(\t\022#\n\033image_class"
-    "ify_request_info\030\002 \001(\t\"E\n\017ElasticcdcRepl"
-    "y\022\017\n\007message\030\001 \001(\t\022!\n\031image_classify_rep"
-    "ly_info\030\002 \001(\t2\373\001\n\021ElasticcdcService\022H\n\010S"
-    "ayHello\022\035.elasticcdc.ElasticcdcRequest\032\033"
-    ".elasticcdc.ElasticcdcReply\"\000\022M\n\rSayHell"
-    "oAgain\022\035.elasticcdc.ElasticcdcRequest\032\033."
-    "elasticcdc.ElasticcdcReply\"\000\022M\n\rImageCla"
-    "ssify\022\035.elasticcdc.ElasticcdcRequest\032\033.e"
-    "lasticcdc.ElasticcdcReply\"\000b\006proto3"
+    "ify_request_info\030\002 \001(\t\022\022\n\nmodel_name\030\003 \001"
+    "(\t\022\r\n\005scale\030\004 \001(\t\022\020\n\010filename\030\005 \001(\t\"E\n\017E"
+    "lasticcdcReply\022\017\n\007message\030\001 \001(\t\022!\n\031image"
+    "_classify_reply_info\030\002 \001(\t2\310\002\n\021Elasticcd"
+    "cService\022H\n\010SayHello\022\035.elasticcdc.Elasti"
+    "ccdcRequest\032\033.elasticcdc.ElasticcdcReply"
+    "\"\000\022M\n\rSayHelloAgain\022\035.elasticcdc.Elastic"
+    "cdcRequest\032\033.elasticcdc.ElasticcdcReply\""
+    "\000\022M\n\rImageClassify\022\035.elasticcdc.Elasticc"
+    "dcRequest\032\033.elasticcdc.ElasticcdcReply\"\000"
+    "\022K\n\013IsPreempted\022\035.elasticcdc.ElasticcdcR"
+    "equest\032\033.elasticcdc.ElasticcdcReply\"\000b\006p"
+    "roto3"
 };
 static ::absl::once_flag descriptor_table_elasticcdc_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_elasticcdc_2eproto = {
     false,
     false,
-    435,
+    565,
     descriptor_table_protodef_elasticcdc_2eproto,
     "elasticcdc.proto",
     &descriptor_table_elasticcdc_2eproto_once,
@@ -174,6 +190,9 @@ inline PROTOBUF_NDEBUG_INLINE ElasticcdcRequest::Impl_::Impl_(
     const Impl_& from)
       : name_(arena, from.name_),
         image_classify_request_info_(arena, from.image_classify_request_info_),
+        model_name_(arena, from.model_name_),
+        scale_(arena, from.scale_),
+        filename_(arena, from.filename_),
         _cached_size_{0} {}
 
 ElasticcdcRequest::ElasticcdcRequest(
@@ -193,6 +212,9 @@ inline PROTOBUF_NDEBUG_INLINE ElasticcdcRequest::Impl_::Impl_(
     ::google::protobuf::Arena* arena)
       : name_(arena),
         image_classify_request_info_(arena),
+        model_name_(arena),
+        scale_(arena),
+        filename_(arena),
         _cached_size_{0} {}
 
 inline void ElasticcdcRequest::SharedCtor(::_pb::Arena* arena) {
@@ -207,6 +229,9 @@ inline void ElasticcdcRequest::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.name_.Destroy();
   _impl_.image_classify_request_info_.Destroy();
+  _impl_.model_name_.Destroy();
+  _impl_.scale_.Destroy();
+  _impl_.filename_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -233,6 +258,9 @@ PROTOBUF_NOINLINE void ElasticcdcRequest::Clear() {
 
   _impl_.name_.ClearToEmpty();
   _impl_.image_classify_request_info_.ClearToEmpty();
+  _impl_.model_name_.ClearToEmpty();
+  _impl_.scale_.ClearToEmpty();
+  _impl_.filename_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -244,15 +272,15 @@ const char* ElasticcdcRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 68, 2> ElasticcdcRequest::_table_ = {
+const ::_pbi::TcParseTable<3, 5, 0, 91, 2> ElasticcdcRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    5, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967264,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    5,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_ElasticcdcRequest_default_instance_._instance,
@@ -261,12 +289,24 @@ const ::_pbi::TcParseTable<1, 2, 0, 68, 2> ElasticcdcRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::elasticcdc::ElasticcdcRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string image_classify_request_info = 2;
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ElasticcdcRequest, _impl_.image_classify_request_info_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // string name = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(ElasticcdcRequest, _impl_.name_)}},
+    // string image_classify_request_info = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ElasticcdcRequest, _impl_.image_classify_request_info_)}},
+    // string model_name = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ElasticcdcRequest, _impl_.model_name_)}},
+    // string scale = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ElasticcdcRequest, _impl_.scale_)}},
+    // string filename = 5;
+    {::_pbi::TcParser::FastUS1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(ElasticcdcRequest, _impl_.filename_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
@@ -276,13 +316,25 @@ const ::_pbi::TcParseTable<1, 2, 0, 68, 2> ElasticcdcRequest::_table_ = {
     // string image_classify_request_info = 2;
     {PROTOBUF_FIELD_OFFSET(ElasticcdcRequest, _impl_.image_classify_request_info_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string model_name = 3;
+    {PROTOBUF_FIELD_OFFSET(ElasticcdcRequest, _impl_.model_name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string scale = 4;
+    {PROTOBUF_FIELD_OFFSET(ElasticcdcRequest, _impl_.scale_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string filename = 5;
+    {PROTOBUF_FIELD_OFFSET(ElasticcdcRequest, _impl_.filename_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\34\4\33\0\0\0\0\0"
+    "\34\4\33\12\5\10\0\0"
     "elasticcdc.ElasticcdcRequest"
     "name"
     "image_classify_request_info"
+    "model_name"
+    "scale"
+    "filename"
   }},
 };
 
@@ -307,6 +359,30 @@ const ::_pbi::TcParseTable<1, 2, 0, 68, 2> ElasticcdcRequest::_table_ = {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "elasticcdc.ElasticcdcRequest.image_classify_request_info");
     target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // string model_name = 3;
+  if (!this->_internal_model_name().empty()) {
+    const std::string& _s = this->_internal_model_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "elasticcdc.ElasticcdcRequest.model_name");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  // string scale = 4;
+  if (!this->_internal_scale().empty()) {
+    const std::string& _s = this->_internal_scale();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "elasticcdc.ElasticcdcRequest.scale");
+    target = stream->WriteStringMaybeAliased(4, _s, target);
+  }
+
+  // string filename = 5;
+  if (!this->_internal_filename().empty()) {
+    const std::string& _s = this->_internal_filename();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "elasticcdc.ElasticcdcRequest.filename");
+    target = stream->WriteStringMaybeAliased(5, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -338,6 +414,24 @@ const ::_pbi::TcParseTable<1, 2, 0, 68, 2> ElasticcdcRequest::_table_ = {
                                     this->_internal_image_classify_request_info());
   }
 
+  // string model_name = 3;
+  if (!this->_internal_model_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_model_name());
+  }
+
+  // string scale = 4;
+  if (!this->_internal_scale().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_scale());
+  }
+
+  // string filename = 5;
+  if (!this->_internal_filename().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_filename());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -355,6 +449,15 @@ void ElasticcdcRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const
   }
   if (!from._internal_image_classify_request_info().empty()) {
     _this->_internal_set_image_classify_request_info(from._internal_image_classify_request_info());
+  }
+  if (!from._internal_model_name().empty()) {
+    _this->_internal_set_model_name(from._internal_model_name());
+  }
+  if (!from._internal_scale().empty()) {
+    _this->_internal_set_scale(from._internal_scale());
+  }
+  if (!from._internal_filename().empty()) {
+    _this->_internal_set_filename(from._internal_filename());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -377,6 +480,9 @@ void ElasticcdcRequest::InternalSwap(ElasticcdcRequest* PROTOBUF_RESTRICT other)
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.image_classify_request_info_, &other->_impl_.image_classify_request_info_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.model_name_, &other->_impl_.model_name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.scale_, &other->_impl_.scale_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.filename_, &other->_impl_.filename_, arena);
 }
 
 ::google::protobuf::Metadata ElasticcdcRequest::GetMetadata() const {

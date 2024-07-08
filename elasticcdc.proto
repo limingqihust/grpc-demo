@@ -6,16 +6,21 @@ package elasticcdc;
 service ElasticcdcService {
   // Sends a greeting
   rpc SayHello (ElasticcdcRequest) returns (ElasticcdcReply) {}
-// Sends another greeting
+  // Sends another greeting
   rpc SayHelloAgain (ElasticcdcRequest) returns (ElasticcdcReply) {}
 
   rpc ImageClassify (ElasticcdcRequest) returns (ElasticcdcReply) {}
+
+  rpc IsPreempted (ElasticcdcRequest) returns (ElasticcdcReply) {}
 }
 
 // The request message containing the user's name.
 message ElasticcdcRequest {
     string name = 1;
     string image_classify_request_info = 2;
+    string model_name = 3;
+    string scale = 4;
+    string filename = 5;
 }
 
 // The response message containing the greetings

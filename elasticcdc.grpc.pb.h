@@ -59,6 +59,13 @@ class ElasticcdcService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::elasticcdc::ElasticcdcReply>> PrepareAsyncImageClassify(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::elasticcdc::ElasticcdcReply>>(PrepareAsyncImageClassifyRaw(context, request, cq));
     }
+    virtual ::grpc::Status IsPreempted(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::elasticcdc::ElasticcdcReply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::elasticcdc::ElasticcdcReply>> AsyncIsPreempted(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::elasticcdc::ElasticcdcReply>>(AsyncIsPreemptedRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::elasticcdc::ElasticcdcReply>> PrepareAsyncIsPreempted(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::elasticcdc::ElasticcdcReply>>(PrepareAsyncIsPreemptedRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -70,6 +77,8 @@ class ElasticcdcService final {
       virtual void SayHelloAgain(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void ImageClassify(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ImageClassify(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void IsPreempted(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void IsPreempted(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -81,6 +90,8 @@ class ElasticcdcService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::elasticcdc::ElasticcdcReply>* PrepareAsyncSayHelloAgainRaw(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::elasticcdc::ElasticcdcReply>* AsyncImageClassifyRaw(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::elasticcdc::ElasticcdcReply>* PrepareAsyncImageClassifyRaw(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::elasticcdc::ElasticcdcReply>* AsyncIsPreemptedRaw(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::elasticcdc::ElasticcdcReply>* PrepareAsyncIsPreemptedRaw(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -106,6 +117,13 @@ class ElasticcdcService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::elasticcdc::ElasticcdcReply>> PrepareAsyncImageClassify(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::elasticcdc::ElasticcdcReply>>(PrepareAsyncImageClassifyRaw(context, request, cq));
     }
+    ::grpc::Status IsPreempted(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::elasticcdc::ElasticcdcReply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::elasticcdc::ElasticcdcReply>> AsyncIsPreempted(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::elasticcdc::ElasticcdcReply>>(AsyncIsPreemptedRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::elasticcdc::ElasticcdcReply>> PrepareAsyncIsPreempted(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::elasticcdc::ElasticcdcReply>>(PrepareAsyncIsPreemptedRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -115,6 +133,8 @@ class ElasticcdcService final {
       void SayHelloAgain(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ImageClassify(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response, std::function<void(::grpc::Status)>) override;
       void ImageClassify(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void IsPreempted(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response, std::function<void(::grpc::Status)>) override;
+      void IsPreempted(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -132,9 +152,12 @@ class ElasticcdcService final {
     ::grpc::ClientAsyncResponseReader< ::elasticcdc::ElasticcdcReply>* PrepareAsyncSayHelloAgainRaw(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::elasticcdc::ElasticcdcReply>* AsyncImageClassifyRaw(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::elasticcdc::ElasticcdcReply>* PrepareAsyncImageClassifyRaw(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::elasticcdc::ElasticcdcReply>* AsyncIsPreemptedRaw(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::elasticcdc::ElasticcdcReply>* PrepareAsyncIsPreemptedRaw(::grpc::ClientContext* context, const ::elasticcdc::ElasticcdcRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_SayHello_;
     const ::grpc::internal::RpcMethod rpcmethod_SayHelloAgain_;
     const ::grpc::internal::RpcMethod rpcmethod_ImageClassify_;
+    const ::grpc::internal::RpcMethod rpcmethod_IsPreempted_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -147,6 +170,7 @@ class ElasticcdcService final {
     // Sends another greeting
     virtual ::grpc::Status SayHelloAgain(::grpc::ServerContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response);
     virtual ::grpc::Status ImageClassify(::grpc::ServerContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response);
+    virtual ::grpc::Status IsPreempted(::grpc::ServerContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_SayHello : public BaseClass {
@@ -208,7 +232,27 @@ class ElasticcdcService final {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SayHello<WithAsyncMethod_SayHelloAgain<WithAsyncMethod_ImageClassify<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_IsPreempted : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_IsPreempted() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_IsPreempted() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsPreempted(::grpc::ServerContext* /*context*/, const ::elasticcdc::ElasticcdcRequest* /*request*/, ::elasticcdc::ElasticcdcReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIsPreempted(::grpc::ServerContext* context, ::elasticcdc::ElasticcdcRequest* request, ::grpc::ServerAsyncResponseWriter< ::elasticcdc::ElasticcdcReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_SayHello<WithAsyncMethod_SayHelloAgain<WithAsyncMethod_ImageClassify<WithAsyncMethod_IsPreempted<Service > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_SayHello : public BaseClass {
    private:
@@ -290,7 +334,34 @@ class ElasticcdcService final {
     virtual ::grpc::ServerUnaryReactor* ImageClassify(
       ::grpc::CallbackServerContext* /*context*/, const ::elasticcdc::ElasticcdcRequest* /*request*/, ::elasticcdc::ElasticcdcReply* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_SayHello<WithCallbackMethod_SayHelloAgain<WithCallbackMethod_ImageClassify<Service > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_IsPreempted : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_IsPreempted() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::elasticcdc::ElasticcdcRequest, ::elasticcdc::ElasticcdcReply>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::elasticcdc::ElasticcdcRequest* request, ::elasticcdc::ElasticcdcReply* response) { return this->IsPreempted(context, request, response); }));}
+    void SetMessageAllocatorFor_IsPreempted(
+        ::grpc::MessageAllocator< ::elasticcdc::ElasticcdcRequest, ::elasticcdc::ElasticcdcReply>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::elasticcdc::ElasticcdcRequest, ::elasticcdc::ElasticcdcReply>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_IsPreempted() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsPreempted(::grpc::ServerContext* /*context*/, const ::elasticcdc::ElasticcdcRequest* /*request*/, ::elasticcdc::ElasticcdcReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* IsPreempted(
+      ::grpc::CallbackServerContext* /*context*/, const ::elasticcdc::ElasticcdcRequest* /*request*/, ::elasticcdc::ElasticcdcReply* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_SayHello<WithCallbackMethod_SayHelloAgain<WithCallbackMethod_ImageClassify<WithCallbackMethod_IsPreempted<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SayHello : public BaseClass {
@@ -339,6 +410,23 @@ class ElasticcdcService final {
     }
     // disable synchronous version of this method
     ::grpc::Status ImageClassify(::grpc::ServerContext* /*context*/, const ::elasticcdc::ElasticcdcRequest* /*request*/, ::elasticcdc::ElasticcdcReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_IsPreempted : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_IsPreempted() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_IsPreempted() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsPreempted(::grpc::ServerContext* /*context*/, const ::elasticcdc::ElasticcdcRequest* /*request*/, ::elasticcdc::ElasticcdcReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -401,6 +489,26 @@ class ElasticcdcService final {
     }
     void RequestImageClassify(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_IsPreempted : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_IsPreempted() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_IsPreempted() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsPreempted(::grpc::ServerContext* /*context*/, const ::elasticcdc::ElasticcdcRequest* /*request*/, ::elasticcdc::ElasticcdcReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIsPreempted(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -467,6 +575,28 @@ class ElasticcdcService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* ImageClassify(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_IsPreempted : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_IsPreempted() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->IsPreempted(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_IsPreempted() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IsPreempted(::grpc::ServerContext* /*context*/, const ::elasticcdc::ElasticcdcRequest* /*request*/, ::elasticcdc::ElasticcdcReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* IsPreempted(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -550,9 +680,36 @@ class ElasticcdcService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedImageClassify(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::elasticcdc::ElasticcdcRequest,::elasticcdc::ElasticcdcReply>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_SayHello<WithStreamedUnaryMethod_SayHelloAgain<WithStreamedUnaryMethod_ImageClassify<Service > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_IsPreempted : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_IsPreempted() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::elasticcdc::ElasticcdcRequest, ::elasticcdc::ElasticcdcReply>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::elasticcdc::ElasticcdcRequest, ::elasticcdc::ElasticcdcReply>* streamer) {
+                       return this->StreamedIsPreempted(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_IsPreempted() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status IsPreempted(::grpc::ServerContext* /*context*/, const ::elasticcdc::ElasticcdcRequest* /*request*/, ::elasticcdc::ElasticcdcReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedIsPreempted(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::elasticcdc::ElasticcdcRequest,::elasticcdc::ElasticcdcReply>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_SayHello<WithStreamedUnaryMethod_SayHelloAgain<WithStreamedUnaryMethod_ImageClassify<WithStreamedUnaryMethod_IsPreempted<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SayHello<WithStreamedUnaryMethod_SayHelloAgain<WithStreamedUnaryMethod_ImageClassify<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_SayHello<WithStreamedUnaryMethod_SayHelloAgain<WithStreamedUnaryMethod_ImageClassify<WithStreamedUnaryMethod_IsPreempted<Service > > > > StreamedService;
 };
 
 }  // namespace elasticcdc

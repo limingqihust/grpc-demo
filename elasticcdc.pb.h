@@ -196,6 +196,9 @@ class ElasticcdcRequest final : public ::google::protobuf::Message
   enum : int {
     kNameFieldNumber = 1,
     kImageClassifyRequestInfoFieldNumber = 2,
+    kModelNameFieldNumber = 3,
+    kScaleFieldNumber = 4,
+    kFilenameFieldNumber = 5,
   };
   // string name = 1;
   void clear_name() ;
@@ -229,13 +232,61 @@ class ElasticcdcRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_image_classify_request_info();
 
   public:
+  // string model_name = 3;
+  void clear_model_name() ;
+  const std::string& model_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_model_name(Arg_&& arg, Args_... args);
+  std::string* mutable_model_name();
+  PROTOBUF_NODISCARD std::string* release_model_name();
+  void set_allocated_model_name(std::string* value);
+
+  private:
+  const std::string& _internal_model_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_model_name(
+      const std::string& value);
+  std::string* _internal_mutable_model_name();
+
+  public:
+  // string scale = 4;
+  void clear_scale() ;
+  const std::string& scale() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_scale(Arg_&& arg, Args_... args);
+  std::string* mutable_scale();
+  PROTOBUF_NODISCARD std::string* release_scale();
+  void set_allocated_scale(std::string* value);
+
+  private:
+  const std::string& _internal_scale() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_scale(
+      const std::string& value);
+  std::string* _internal_mutable_scale();
+
+  public:
+  // string filename = 5;
+  void clear_filename() ;
+  const std::string& filename() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_filename(Arg_&& arg, Args_... args);
+  std::string* mutable_filename();
+  PROTOBUF_NODISCARD std::string* release_filename();
+  void set_allocated_filename(std::string* value);
+
+  private:
+  const std::string& _internal_filename() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_filename(
+      const std::string& value);
+  std::string* _internal_mutable_filename();
+
+  public:
   // @@protoc_insertion_point(class_scope:elasticcdc.ElasticcdcRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      68, 2>
+      3, 5, 0,
+      91, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -252,6 +303,9 @@ class ElasticcdcRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::google::protobuf::internal::ArenaStringPtr image_classify_request_info_;
+    ::google::protobuf::internal::ArenaStringPtr model_name_;
+    ::google::protobuf::internal::ArenaStringPtr scale_;
+    ::google::protobuf::internal::ArenaStringPtr filename_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -564,6 +618,156 @@ inline void ElasticcdcRequest::set_allocated_image_classify_request_info(std::st
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:elasticcdc.ElasticcdcRequest.image_classify_request_info)
+}
+
+// string model_name = 3;
+inline void ElasticcdcRequest::clear_model_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.model_name_.ClearToEmpty();
+}
+inline const std::string& ElasticcdcRequest::model_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:elasticcdc.ElasticcdcRequest.model_name)
+  return _internal_model_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ElasticcdcRequest::set_model_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.model_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:elasticcdc.ElasticcdcRequest.model_name)
+}
+inline std::string* ElasticcdcRequest::mutable_model_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_model_name();
+  // @@protoc_insertion_point(field_mutable:elasticcdc.ElasticcdcRequest.model_name)
+  return _s;
+}
+inline const std::string& ElasticcdcRequest::_internal_model_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.model_name_.Get();
+}
+inline void ElasticcdcRequest::_internal_set_model_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.model_name_.Set(value, GetArena());
+}
+inline std::string* ElasticcdcRequest::_internal_mutable_model_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.model_name_.Mutable( GetArena());
+}
+inline std::string* ElasticcdcRequest::release_model_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:elasticcdc.ElasticcdcRequest.model_name)
+  return _impl_.model_name_.Release();
+}
+inline void ElasticcdcRequest::set_allocated_model_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.model_name_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.model_name_.IsDefault()) {
+          _impl_.model_name_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:elasticcdc.ElasticcdcRequest.model_name)
+}
+
+// string scale = 4;
+inline void ElasticcdcRequest::clear_scale() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.scale_.ClearToEmpty();
+}
+inline const std::string& ElasticcdcRequest::scale() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:elasticcdc.ElasticcdcRequest.scale)
+  return _internal_scale();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ElasticcdcRequest::set_scale(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.scale_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:elasticcdc.ElasticcdcRequest.scale)
+}
+inline std::string* ElasticcdcRequest::mutable_scale() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_scale();
+  // @@protoc_insertion_point(field_mutable:elasticcdc.ElasticcdcRequest.scale)
+  return _s;
+}
+inline const std::string& ElasticcdcRequest::_internal_scale() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.scale_.Get();
+}
+inline void ElasticcdcRequest::_internal_set_scale(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.scale_.Set(value, GetArena());
+}
+inline std::string* ElasticcdcRequest::_internal_mutable_scale() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.scale_.Mutable( GetArena());
+}
+inline std::string* ElasticcdcRequest::release_scale() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:elasticcdc.ElasticcdcRequest.scale)
+  return _impl_.scale_.Release();
+}
+inline void ElasticcdcRequest::set_allocated_scale(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.scale_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.scale_.IsDefault()) {
+          _impl_.scale_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:elasticcdc.ElasticcdcRequest.scale)
+}
+
+// string filename = 5;
+inline void ElasticcdcRequest::clear_filename() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.filename_.ClearToEmpty();
+}
+inline const std::string& ElasticcdcRequest::filename() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:elasticcdc.ElasticcdcRequest.filename)
+  return _internal_filename();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ElasticcdcRequest::set_filename(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.filename_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:elasticcdc.ElasticcdcRequest.filename)
+}
+inline std::string* ElasticcdcRequest::mutable_filename() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_filename();
+  // @@protoc_insertion_point(field_mutable:elasticcdc.ElasticcdcRequest.filename)
+  return _s;
+}
+inline const std::string& ElasticcdcRequest::_internal_filename() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.filename_.Get();
+}
+inline void ElasticcdcRequest::_internal_set_filename(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.filename_.Set(value, GetArena());
+}
+inline std::string* ElasticcdcRequest::_internal_mutable_filename() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.filename_.Mutable( GetArena());
+}
+inline std::string* ElasticcdcRequest::release_filename() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:elasticcdc.ElasticcdcRequest.filename)
+  return _impl_.filename_.Release();
+}
+inline void ElasticcdcRequest::set_allocated_filename(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.filename_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.filename_.IsDefault()) {
+          _impl_.filename_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:elasticcdc.ElasticcdcRequest.filename)
 }
 
 // -------------------------------------------------------------------

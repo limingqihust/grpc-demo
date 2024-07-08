@@ -87,6 +87,9 @@ class ElasticcdcClient {
   std::string ImageClassify(const std::string& file_name) {
     ElasticcdcRequest request;
     request.set_image_classify_request_info(file_name);
+    request.set_model_name("densenet_onnx");
+    request.set_scale("INCEPTION");
+    request.set_filename("/home/lmq/server/qa/images/mug.jpg");
     ElasticcdcReply reply;
     ClientContext context;
 
@@ -98,6 +101,18 @@ class ElasticcdcClient {
       std::cout << status.error_code() << ": " << status.error_message()
                 << std::endl;
       return "RPC failed";
+    }
+  }
+
+  bool IsPreempted() {
+    ElasticcdcRequest request;
+    ElasticcdcReply reply;
+    ClientContext context;
+    Status status = stub_->IsPreempted(&context, request, &reply);
+    if (status.ok()) {
+      return false;   // not preempted
+    } else {
+      return true;    // is preempted
     }
   }
 
@@ -113,6 +128,12 @@ int main(int argc, char** argv) {
   const std::string target_str = "localhost:50051";
   ElasticcdcClient client(grpc::CreateChannel(
                           target_str, grpc::InsecureChannelCredentials()));
+
+  if (client.IsPreempted()) {
+    std::cout << "rpc server is preempted" << std::endl;
+  } else {
+    std::cout << "rpc server is not preempted" << std::endl;
+  }
     const std::string file_name("world");
     std::string reply = client.ImageClassify(file_name);
     std::cout << "rpc client recieve: " << reply << std::endl; 
